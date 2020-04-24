@@ -5,7 +5,7 @@ import Logout from './Logout'
 import Register from './Register'
 
 export default function UserBar () {
-  const [user, setUser] = setState('')
+  const [user, setUser] = useState('')
   if (user) {
     return <Logout user={ user } setUser={ setUser }/>
   } else {
