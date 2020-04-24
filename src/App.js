@@ -1,16 +1,12 @@
 import React from 'react'
 
-import Login from './user/Login'
-import Logout from './user/Logout'
-import Register from './user/Register'
+import UserBar from './user/UserBar'
 import './App.css'
 
 function App() {
   return (
     <div>
-      <Login />
-      <Logout />
-      <Register />
+      <UserBar />
     </div>
   )
 }
