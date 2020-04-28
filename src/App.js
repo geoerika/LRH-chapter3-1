@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useReducer } from 'react'
 
 import PostList from './post/PostList'
 import CreatePost from './post/CreatePost'
@@ -9,12 +9,26 @@ const defaultPosts = [
     { title: 'Using React Fragments', content: 'Keeping the DOM tree clean!', author: 'Daniel Bugl' }
 ]
 
+const userReducer= (state, action) => {
+  switch (action.type) {
+    case 'LOGIN':
+    case 'REGISTER':
+      return action.username
+    case 'LOGOUT':
+      return ''
+    default:
+      throw new Error()
+  }
+}
+
 export default function App () {
-  const [user, setUser] = useState('')
+  // const [user, setUser] = useState('')
   const [posts, setPosts] = useState(defaultPosts)
+
+  const [user, dispatchUser] = useReducer(userReducer, '')
   return (
     <div style={{ padding: 8 }}>
-      <UserBar user={ user } setUser={ setUser }/>
+      <UserBar user={ user } dispatch={ dispatchUser }/>
         <br />
         { user && <CreatePost user={ user } posts={ posts } setPosts={ setPosts }/> }
         <br />
